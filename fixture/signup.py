@@ -18,8 +18,8 @@ class SignupHelper:
         wd.get(url)
         wd.find_element_by_name("realname").send_keys(username)
         wd.find_element_by_name("password").send_keys(password)
-        wd.find_element_by_name("password-confirm").send_keys(password)
-        wd.find_element_by_xpath("//*[@id='account-update-form']/fieldset/span/button/span").click()
+        wd.find_element_by_name("password_confirm").send_keys(password)
+        wd.find_element_by_xpath("//button[@type='submit']").click()
 
     def extract_confirmation_url(self, text):
         return re.search("http://.*$", text, re.MULTILINE).group(0)
