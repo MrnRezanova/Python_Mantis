@@ -1,10 +1,9 @@
 from model.project import Project
 
 def test_delete_project(app):
-    print(app.project.get_project_list())
-    if app.project.get_project_list() == 1:
+    if app.project.get_projects_number() == 0:
         app.project.create(Project(name="NewProject"))
-    old_projects = app.project.get_project_list()
+    old_projects_number = app.project.get_projects_number()
     app.project.delete()
-    new_projects = app.project.get_project_list()
-    assert old_projects -1 == new_projects
+    new_projects_number = app.project.get_projects_number()
+    assert old_projects_number -1 == new_projects_number

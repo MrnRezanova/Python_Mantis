@@ -12,9 +12,9 @@ testdata = Project(name=random_string("name", 6))
 
 
 def test_add_project(app):
-    old_projects = app.project.get_project_list()
+    old_projects_number = app.project.get_projects_number()
     app.project.create(testdata)
-    new_projects = app.project.get_project_list()
-    assert old_projects + 1 == new_projects
+    new_projects_number = app.project.get_projects_number()
+    assert old_projects_number + 1 == new_projects_number
 
 
