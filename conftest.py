@@ -17,14 +17,14 @@ def load_config(file):
 
 
 @pytest.fixture
-def app(request):
+def app(request, config):
     global fixture
     browser = request.config.getoption("--browser")
-    web_config = load_config(request.config.getoption("--target"))["web"]
-    web_config_for_login = load_config(request.config.getoption("--target"))["webadmin"]
+    #web_config = load_config(request.config.getoption("--target"))["web"]
+    #web_config_for_login = load_config(request.config.getoption("--target"))["webadmin"]
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser=browser, base_url=web_config["baseUrl"])
-    fixture.session.ensure_login(username=web_config_for_login["username"], password=web_config_for_login["password"])
+        fixture = Application(browser=browser, config=config)
+    fixture.session.ensure_login(username=config["webadmin"]["username"], password=config["webadmin"]["password"])
     return fixture
 
 
@@ -36,6 +36,10 @@ def stop(request):
 
     request.addfinalizer(fin)
     return fixture
+
+@pytest.fixture(scope="session")
+def config(request):
+    return load_config(request.config.getoption("--target"))
 
 
 def pytest_addoption(parser):
