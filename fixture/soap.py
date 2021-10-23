@@ -30,4 +30,12 @@ class SoapHelper:
         except:
             return False
 
+    def get_projects(self, username, password):
+        client = Client('http://localhost/mantisbt-2.25.2/api/soap/mantisconnect.php?wsdl')
+        list_project = []
+        try:
+            return client.service.mc_projects_get_user_accessible(username, password)
+        except:
+            return False
+
 

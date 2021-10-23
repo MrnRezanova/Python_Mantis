@@ -21,8 +21,8 @@ class ProjectHelper:
     def fill_create_project_form(self, project):
         wd = self.app.wd
         self.app.change_field_value("name", project.name)
-        self.app.change_field_value("status", project.status)
-        self.app.change_field_value("view_state", project.viewstate)
+        self.app.change_droplist_value("status", project.status.name)
+        self.app.change_droplist_value("view_state", project.viewstate.name)
         self.app.change_field_value("description", project.description)
 
     def create(self, project):
