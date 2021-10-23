@@ -18,4 +18,4 @@ def test_delete_project(app):
     for project in old_projects_list:
         id_from_soap = app.soap.get_id_project_from_name('administrator', 'root', project.name)
         list_project_from_soap.append(Project(name=project.name, id=str(id_from_soap)))
-    assert sorted(projects_list, key=Project.id_or_max) == sorted(list_project_from_soap, key=Project.id_or_max)
+    assert sorted(old_projects_list, key=Project.id_or_max) == sorted(list_project_from_soap, key=Project.id_or_max)
