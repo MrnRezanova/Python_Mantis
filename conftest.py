@@ -20,8 +20,6 @@ def load_config(file):
 def app(request, config):
     global fixture
     browser = request.config.getoption("--browser")
-    #web_config = load_config(request.config.getoption("--target"))["web"]
-    #web_config_for_login = load_config(request.config.getoption("--target"))["webadmin"]
     if fixture is None or not fixture.is_valid():
         fixture = Application(browser=browser, config=config)
     fixture.session.ensure_login(username=config["webadmin"]["username"], password=config["webadmin"]["password"])

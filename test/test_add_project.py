@@ -14,11 +14,11 @@ testdata = Project(name=random_string("name", 10), status=Status(name="stable"),
 def test_add_project(app):
     old_projects_number = app.project.get_projects_number()
     old_projects_list = app.project.get_projects()
-    old_projects_from_soap = app.soap.get_projects('administrator', 'root')
+    old_projects_from_soap = app.soap.get_projects()
     app.project.create(testdata)
     new_projects_number = app.project.get_projects_number()
     new_projects_list = app.project.get_projects()
-    new_projects_from_soap = app.soap.get_projects('administrator', 'root')
+    new_projects_from_soap = app.soap.get_projects()
     old_projects_list.append(testdata)
     old_projects_from_soap.append(testdata)
     assert old_projects_number + 1 == new_projects_number
