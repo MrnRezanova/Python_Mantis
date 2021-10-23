@@ -32,7 +32,7 @@ class ProjectHelper:
         self.fill_create_project_form(project)
         wd.find_element_by_xpath("//input[@value='Add Project']").click()
         wd.find_element_by_xpath("//a[contains(text(),'Proceed')]").click()
-
+        self.project_cache = None
 
     def get_projects_number(self):
         wd = self.app.wd
@@ -45,6 +45,7 @@ class ProjectHelper:
         wd.find_element_by_xpath("//div[@id='main-container']/div[2]/div[2]/div/div/div[2]/div[2]/div/div[2]/table/tbody/tr/td/a").click()
         wd.find_element_by_xpath("//input[@value='Delete Project']").click()
         wd.find_element_by_xpath("//input[@value='Delete Project']").click()
+        self.project_cache = None
 
     def delete_by_id(self, id):
         wd = self.app.wd
@@ -52,6 +53,7 @@ class ProjectHelper:
         wd.find_element_by_xpath("//a[contains(@href, 'manage_proj_edit_page.php?project_id=%s')]" % id).click()
         wd.find_element_by_xpath("//input[@value='Delete Project']").click()
         wd.find_element_by_xpath("//input[@value='Delete Project']").click()
+        self.project_cache = None
 
     project_cache = None
 
